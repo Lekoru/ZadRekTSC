@@ -8,22 +8,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-  width: 100%;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 100%;
-  min-height: 100dvh;
-  width: 100%;
 }
 
 .card {
   --bs-card-border-width: none;
-}
-
-.container {
-  max-width: 100%;
 }

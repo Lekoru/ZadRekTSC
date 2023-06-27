@@ -1,13 +1,18 @@
 import React from "react";
-import Zad1 from "./views/Zad1";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Container} from "react-bootstrap";
+import {NavBar} from "./components/NavBar";
+import {BrowserRouter} from "react-router-dom";
+import {Router} from "./router/router";
 function App() {
   return (
     <>
-      <Container fluid>
-        <Zad1/>
-      </Container>
+      <BrowserRouter>
+        <NavBar/>
+        <Container fluid>
+          <Router/>
+        </Container>
+      </BrowserRouter>
     </>
   )
 }
