@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import {Button, FormControl, FormHelperText, Grid, TextField} from "@mui/material";
-import {CheckBox} from "@mui/icons-material";
-
+import {Button, Checkbox, FormControl, FormHelperText, Grid, TextField, Typography} from "@mui/material";
+import TaskAltIcon from '@mui/icons-material/TaskAlt';
+import VerifiedIcon from '@mui/icons-material/Verified';
 export const Zad2 = () => {
   const [form, setForm] = useState<Form>( {name: '', secondName: '', email: '', phone: '', message: '', privacy: false})
 
@@ -9,6 +9,11 @@ export const Zad2 = () => {
     <>
       <Grid container justifyContent={'space-evenly'} alignContent={'space-around'}>
         <FormControl size={"small"}>
+          <Grid item container justifyContent={'center'}>
+            <Typography variant={'h3'} sx={{marginBottom: '1dvh'}}>
+              Kontakt
+            </Typography>
+          </Grid>
           <Grid item container justifyContent={'space-between'}>
             <Grid item xs={5.90} >
               <TextField
@@ -46,12 +51,17 @@ export const Zad2 = () => {
               label={'Wiadomość'}
               fullWidth
               multiline
-              sx={{marginBottom: '1dvh'}}
             />
           </Grid>
           <Grid item container alignContent={'center'} justifyContent={'center'}>
-            <CheckBox sx={{margin: '0 0.5dvw 1dvh 0', }} />
-            <span>Polityka prywatności</span>
+            <Grid item>
+              <Checkbox
+                sx={{margin: '0 0.5dvw 1dvh 0', height: '100%'}}
+                icon={<TaskAltIcon />}
+                checkedIcon={<VerifiedIcon />}
+              />
+            </Grid>
+            <Grid item xs={5} container alignContent={'center'}>Polityka prywatności</Grid>
           </Grid>
           <Button type={'submit'} variant={'contained'}>Wyślij</Button>
         </FormControl>
