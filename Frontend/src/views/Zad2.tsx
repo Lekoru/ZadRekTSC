@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {Button, Checkbox, FormControl, FormHelperText, Grid, TextField, Typography} from '@mui/material';
+import {Button, Checkbox, FormControl, Grid, TextField, Typography} from '@mui/material';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import VerifiedIcon from '@mui/icons-material/Verified';
-import {NameField} from '../components/NameField'; 
+import {NameField} from '../components/NameField';
+import {SecondNameField} from '../components/SecondNameField';
+import {setDefaults} from '../common/Utils/Form';
 export const Zad2 = () => {
   const [form, setForm] = useState<Form>({
     name: '',
@@ -15,7 +17,14 @@ export const Zad2 = () => {
       min: 2,
       max: 10,
       required: false,
-      defaultValue: 'tal',
+      defaultValue: 'test',
+      regex: /^[a-zA-Z\s]+$/
+    },
+    secondNameConf: {
+      min: 1,
+      max: 5,
+      required: true,
+      defaultValue: 'test1',
       regex: /^[a-zA-Z\s]+$/
     }
   });
@@ -67,12 +76,7 @@ export const Zad2 = () => {
               <NameField error={error} setError={setError} form={form} setForm={setForm} />
             </Grid>
             <Grid item xs={5.90}>
-              <TextField
-                label={'Nazwisko'}
-                fullWidth
-                sx={{marginBottom: '1dvh'}}
-                required={secondNameConf?.required}
-              />
+              <SecondNameField error={error} setError={setError} form={form} setForm={setForm}/>
             </Grid>
           </Grid>
           <Grid container justifyContent={'space-between'}>
@@ -82,7 +86,7 @@ export const Zad2 = () => {
                 fullWidth
                 sx={{marginBottom: '1dvh'}}
                 required={emailConf?.required === false ? emailConf?.required : true}
-              /> 
+              />
             </Grid>
             <Grid item xs={5.90}>
               <TextField
