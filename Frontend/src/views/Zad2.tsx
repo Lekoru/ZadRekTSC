@@ -4,7 +4,49 @@ import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import {NameField} from '../components/NameField'; 
 export const Zad2 = () => {
-  const [form, setForm] = useState<Form>( {name: '', secondName: '', email: '', phone: '', message: '', privacy: false})
+  const [form, setForm] = useState<Form>({
+    name: '',
+    secondName: '',
+    email: '',
+    phone: '',
+    message: '',
+    privacy: false,
+    nameConf: {
+      min: 2,
+      max: 10,
+      required: false,
+      defaultValue: 'tal',
+      regex: /^[a-zA-Z\s]+$/
+    }
+  });
+  const [error, setError] = useState<FormErrors>({
+    nameError: {error: false, errMsg: ''},
+    secondNameError: {error: false, errMsg: ''},
+    emailError: {error: false, errMsg: ''},
+    phoneError: {error: false, errMsg: ''},
+    messageError: {error: false, errMsg: ''},
+    privacyError: {error: false, errMsg: ''}
+  });
+  const {secondNameConf, phoneConf, emailConf, messageConf} = form;
+
+  useEffect(()=> {
+    console.log(form);
+    console.log(error);
+  }, [form, error]);
+
+  const handlePrivacy = () => {
+    if (error.privacyError.error){
+      error.privacyError = {error: false, errMsg: ''};
+    }
+    form.privacy = !form.privacy;
+    setForm({...form});
+  };
+  const handleSubmit = () => {
+    if (!form.privacy) {
+      error.privacyError = {error: true, errMsg: '* Pole wymagane.'};
+    }
+    setError({...error});
+  };
 
   return (
     <>
