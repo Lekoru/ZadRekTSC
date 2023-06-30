@@ -27,7 +27,12 @@ export const Zad2 = () => {
     messageError: {error: false, errMsg: ''},
     privacyError: {error: false, errMsg: ''}
   });
-  const {secondNameConf, phoneConf, emailConf, messageConf} = form;
+
+  const {phoneConf, emailConf, messageConf} = form;
+
+  useEffect(()=> {
+    setDefaults(form, setForm);
+  }, []);
 
   useEffect(()=> {
     console.log(form);

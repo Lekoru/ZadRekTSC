@@ -18,6 +18,7 @@ type Form = {
   emailConf?: FieldConfig
   phoneConf?: FieldConfig
   messageConf?: FieldConfig
+  [key: string]: any;
 }
 
 type ErrorConfig = {
@@ -32,4 +33,5 @@ type FormErrors = {
   phoneError: ErrorConfig,
   messageError: ErrorConfig,
   privacyError: ErrorConfig,
+  [key: string]: any
 }
