@@ -1,48 +1,48 @@
-import React, {useState} from "react";
-import {Button, Checkbox, FormControl, FormHelperText, Grid, TextField, Typography} from "@mui/material";
+import React, {useEffect, useState} from 'react';
+import {Button, Checkbox, FormControl, FormHelperText, Grid, TextField, Typography} from '@mui/material';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import VerifiedIcon from '@mui/icons-material/Verified';
+import {NameField} from '../components/NameField'; 
 export const Zad2 = () => {
   const [form, setForm] = useState<Form>( {name: '', secondName: '', email: '', phone: '', message: '', privacy: false})
 
   return (
     <>
       <Grid container justifyContent={'space-evenly'} alignContent={'space-around'}>
-        <FormControl size={"small"}>
+        <FormControl size={'small'}>
           <Grid item container justifyContent={'center'}>
             <Typography variant={'h3'} sx={{marginBottom: '1dvh'}}>
               Kontakt
             </Typography>
           </Grid>
-          <Grid item container justifyContent={'space-between'}>
+          <Grid container justifyContent={'space-between'}>
             <Grid item xs={5.90} >
-              <TextField
-                label={'Imie'}
-                fullWidth
-                sx={{marginBottom: '1dvh'}}
-              />
+              <NameField error={error} setError={setError} form={form} setForm={setForm} />
             </Grid>
             <Grid item xs={5.90}>
               <TextField
                 label={'Nazwisko'}
                 fullWidth
-                sx={{marginBottom: '1dvh'}}/>
+                sx={{marginBottom: '1dvh'}}
+                required={secondNameConf?.required}
+              />
             </Grid>
           </Grid>
-          <Grid item container justifyContent={'space-between'}>
+          <Grid container justifyContent={'space-between'}>
             <Grid item xs={5.90}>
               <TextField
                 label={'E-mail'}
                 fullWidth
                 sx={{marginBottom: '1dvh'}}
-              />
+                required={emailConf?.required === false ? emailConf?.required : true}
+              /> 
             </Grid>
             <Grid item xs={5.90}>
               <TextField
                 label={'Numer telefonu'}
-                type={'number'}
                 fullWidth
                 sx={{marginBottom: '1dvh'}}
+                required={phoneConf?.required ? phoneConf?.required : true }
               />
             </Grid>
           </Grid>
@@ -51,21 +51,28 @@ export const Zad2 = () => {
               label={'Wiadomość'}
               fullWidth
               multiline
+              required={messageConf?.required}
             />
           </Grid>
-          <Grid item container alignContent={'center'} justifyContent={'center'}>
+          <Grid container alignContent={'center'} justifyContent={'center'}>
             <Grid item>
               <Checkbox
-                sx={{margin: '0 0.5dvw 1dvh 0', height: '100%'}}
-                icon={<TaskAltIcon />}
+                size={'small'}
+                sx={{height: '100%'}}
+                icon={<TaskAltIcon color={error.privacyError.error ? 'error' : 'inherit'}/>}
                 checkedIcon={<VerifiedIcon />}
+                onClick={handlePrivacy}
               />
             </Grid>
-            <Grid item xs={5} container alignContent={'center'}>Polityka prywatności</Grid>
+            <Grid item xs={5} container alignContent={'center'}>
+              <Typography variant={'body1'} color={ error.privacyError.error ? 'error' : 'inherit'}>
+                Polityka prywatności
+              </Typography>
+            </Grid>
           </Grid>
-          <Button type={'submit'} variant={'contained'}>Wyślij</Button>
+          <Button type={'submit'} variant={'contained'} onClick={handleSubmit}>Wyślij</Button>
         </FormControl>
       </Grid>
     </>
-  )
-}
+  );
+};
