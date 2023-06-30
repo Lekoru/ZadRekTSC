@@ -1,7 +1,7 @@
 type FieldConfig = {
   min?: number
   max?: number
-  regex?: string
+  regex?: RegExp
   required?: boolean
   defaultValue?: string
 }
@@ -18,4 +18,18 @@ type Form = {
   emailConf?: FieldConfig
   phoneConf?: FieldConfig
   messageConf?: FieldConfig
+}
+
+type ErrorConfig = {
+  error: boolean
+  errMsg : string
+}
+
+type FormErrors = {
+  nameError: ErrorConfig,
+  secondNameError: ErrorConfig,
+  emailError: ErrorConfig,
+  phoneError: ErrorConfig,
+  messageError: ErrorConfig,
+  privacyError: ErrorConfig,
 }
