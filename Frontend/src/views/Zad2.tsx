@@ -6,6 +6,7 @@ import {NameField} from '../components/NameField';
 import {SecondNameField} from '../components/SecondNameField';
 import {setDefaults} from '../common/Utils/Form';
 import {EmailField} from '../components/EmailField';
+import {PhoneField} from '../components/PhoneField';
 export const Zad2 = () => {
   const [form, setForm] = useState<Form>({
     name: '',
@@ -87,12 +88,7 @@ export const Zad2 = () => {
              <EmailField error={error} setError={setError} form={form} setForm={setForm}/>
             </Grid>
             <Grid item xs={5.90}>
-              <TextField
-                label={'Numer telefonu'}
-                fullWidth
-                sx={{marginBottom: '1dvh'}}
-                required={phoneConf?.required ? phoneConf?.required : true }
-              />
+              <PhoneField error={error} setError={setError} form={form} setForm={setForm}/>
             </Grid>
           </Grid>
           <Grid item xs={12}>
