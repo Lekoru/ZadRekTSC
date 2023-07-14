@@ -5,6 +5,7 @@ import VerifiedIcon from '@mui/icons-material/Verified';
 import {NameField} from '../components/NameField';
 import {SecondNameField} from '../components/SecondNameField';
 import {setDefaults} from '../common/Utils/Form';
+import {EmailField} from '../components/EmailField';
 export const Zad2 = () => {
   const [form, setForm] = useState<Form>({
     name: '',
@@ -26,6 +27,13 @@ export const Zad2 = () => {
       required: true,
       defaultValue: 'test1',
       regex: /^[a-zA-Z\s]+$/
+    },
+    emailConf: {
+      min: 1,
+      max: 5,
+      required: true,
+      defaultValue: '',
+      regex: /^[a-zA-Z\s]+$/
     }
   });
   const [error, setError] = useState<FormErrors>({
@@ -37,16 +45,11 @@ export const Zad2 = () => {
     privacyError: {error: false, errMsg: ''}
   });
 
-  const {phoneConf, emailConf, messageConf} = form;
+  const {messageConf} = form;
 
   useEffect(()=> {
     setDefaults(form, setForm);
   }, []);
-
-  useEffect(()=> {
-    console.log(form);
-    console.log(error);
-  }, [form, error]);
 
   const handlePrivacy = () => {
     if (error.privacyError.error){
@@ -81,12 +84,7 @@ export const Zad2 = () => {
           </Grid>
           <Grid container justifyContent={'space-between'}>
             <Grid item xs={5.90}>
-              <TextField
-                label={'E-mail'}
-                fullWidth
-                sx={{marginBottom: '1dvh'}}
-                required={emailConf?.required === false ? emailConf?.required : true}
-              />
+             <EmailField error={error} setError={setError} form={form} setForm={setForm}/>
             </Grid>
             <Grid item xs={5.90}>
               <TextField
