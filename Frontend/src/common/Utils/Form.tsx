@@ -34,6 +34,12 @@ export const handleChange = (value: string, fieldName: string, {form, setForm, s
       setError({...error});
       return;
     }
+    if (fieldName === 'phone' && value !== '') {
+      const inputIsNotANumber = new RegExp(fieldConf?.regex).test(value[value.length - 1]);
+      if (!inputIsNotANumber) {
+        return;
+      }
+    }
   }
 
   if (value.length > 32) {
@@ -41,6 +47,7 @@ export const handleChange = (value: string, fieldName: string, {form, setForm, s
     setError({...error});
     return;
   }
+
 
   if (error[errorField].error) {
     error[errorField] = {error: false, errMsg: ''};
